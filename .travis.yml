@@ -1,0 +1,11 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t ubersensei/docker-react -f Dockerfile.dev .
+
+script:
+  # npm run test, executes in a watch mode
+  # We end it using -- --coverage
+  - docker run ubersensei/docker-react npm run test -- --coverage
